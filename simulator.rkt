@@ -17,8 +17,8 @@
 
 (define by-roster-score
   (lambda (manager1 manager2)
-    (< (send (send manager1 get-roster) get-total-projected-score)
-       (send (send manager2 get-roster) get-total-projected-score))))
+    (>= (send (send manager1 get-roster) get-total-projected-score)
+        (send (send manager2 get-roster) get-total-projected-score))))
 
 (define run
   (lambda ()
@@ -36,7 +36,11 @@
                     (send manager get-roster) add-player selected-player))))
       (for ([manager (sort (vector->list managers) by-roster-score)])
            (let ([roster (send manager get-roster)])
-             (displayln (string-append "---" (send manager get-name) "---"))
+             (displayln
+               (string-append
+                 "---- "
+                 (send manager get-name)
+                 " ----"))
              (displayln
                (string-append
                  "Roster score: "
