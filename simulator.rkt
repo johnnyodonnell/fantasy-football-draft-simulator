@@ -54,6 +54,8 @@
                   (send players remove selected-player)
                   (send
                     (send manager get-roster) add-player selected-player))))
+      (displayln " ")
+      (displayln "RESULTS:")
       (for ([manager (sort managers by-roster-score)])
            (let ([roster (send manager get-roster)])
              (displayln
