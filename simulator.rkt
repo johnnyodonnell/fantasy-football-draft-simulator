@@ -7,6 +7,7 @@
 (require "./lib/strategies/rb-rb-wr-wr-qb-te.rkt")
 (require "./lib/strategies/rb-rb-wr-wr-te-qb.rkt")
 (require "./lib/strategies/largest-diff.rkt")
+(require "./lib/strategies/furthest-from-avg.rkt")
 
 
 (define num-of-managers 10)
@@ -14,16 +15,16 @@
 (define create-managers
   (lambda ()
     (list
-      (make-object manager% 1 largest-diff)
-      (make-object manager% 2 largest-diff)
-      (make-object manager% 3 largest-diff)
-      (make-object manager% 4 largest-diff)
-      (make-object manager% 5 largest-diff)
-      (make-object manager% 6 largest-diff)
-      (make-object manager% 7 largest-diff)
-      (make-object manager% 8 largest-diff)
-      (make-object manager% 9 largest-diff)
-      (make-object manager% 10 largest-diff))))
+      (make-object manager% 1 furthest-from-avg)
+      (make-object manager% 2 furthest-from-avg)
+      (make-object manager% 3 furthest-from-avg)
+      (make-object manager% 4 furthest-from-avg)
+      (make-object manager% 5 furthest-from-avg)
+      (make-object manager% 6 furthest-from-avg)
+      (make-object manager% 7 furthest-from-avg)
+      (make-object manager% 8 furthest-from-avg)
+      (make-object manager% 9 furthest-from-avg)
+      (make-object manager% 10 furthest-from-avg))))
 
 (define by-roster-score
   (lambda (manager1 manager2)

@@ -58,6 +58,16 @@
                            (let ([players (hash-ref player-map position)])
                              (list-ref players
                                        (- (length players) (add1 i))))))
+          (define/public get-avg
+                         (lambda (position)
+                           (let ([players (hash-ref player-map position)])
+                             (/
+                               (foldl
+                                 (lambda (player sum)
+                                   (+ sum (send player get-total-points)))
+                                 0
+                                 players)
+                               (length players)))))
           (define/public remove
                          (lambda (player)
                            (let ([position (send player get-position)])
