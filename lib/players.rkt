@@ -53,6 +53,11 @@
                              (if (empty? players)
                                  #f
                                  (car players)))))
+          (define/public get-bottom
+                         (lambda (position [i 0])
+                           (let ([players (hash-ref player-map position)])
+                             (list-ref players
+                                       (- (length players) (add1 i))))))
           (define/public remove
                          (lambda (player)
                            (let ([position (send player get-position)])
