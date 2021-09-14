@@ -72,6 +72,10 @@
                                      (if player
                                          (displayln
                                            (string-append
+                                             (string-upcase
+                                               (symbol->string
+                                                 (send player get-position)))
+                                             " "
                                              (send player get-name)
                                              " ("
                                              (number->string

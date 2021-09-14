@@ -4,16 +4,24 @@
 (require "./lib/roster.rkt")
 (require "./lib/players.rkt")
 (require "./lib/strategies/highest-scorer.rkt")
+(require "./lib/strategies/rb-rb-wr-wr.rkt")
 
 
 (define num-of-managers 10)
 
 (define create-managers
   (lambda ()
-    (build-vector
-      num-of-managers
-      (lambda (i)
-        (make-object manager% (add1 i) highest-scorer)))))
+    (list
+      (make-object manager% 1 rb-rb-wr-wr)
+      (make-object manager% 2 rb-rb-wr-wr)
+      (make-object manager% 3 rb-rb-wr-wr)
+      (make-object manager% 4 rb-rb-wr-wr)
+      (make-object manager% 5 rb-rb-wr-wr)
+      (make-object manager% 6 rb-rb-wr-wr)
+      (make-object manager% 7 rb-rb-wr-wr)
+      (make-object manager% 8 rb-rb-wr-wr)
+      (make-object manager% 9 rb-rb-wr-wr)
+      (make-object manager% 10 rb-rb-wr-wr))))
 
 (define by-roster-score
   (lambda (manager1 manager2)
@@ -27,14 +35,13 @@
            (for ([manager
                    (if (even? i)
                        managers
-                       (reverse
-                         (vector->list managers)))])
+                       (reverse managers))])
                 (let ([selected-player
                         (send manager make-selection players)])
                   (send players remove selected-player)
                   (send
                     (send manager get-roster) add-player selected-player))))
-      (for ([manager (sort (vector->list managers) by-roster-score)])
+      (for ([manager (sort managers by-roster-score)])
            (let ([roster (send manager get-roster)])
              (displayln
                (string-append
