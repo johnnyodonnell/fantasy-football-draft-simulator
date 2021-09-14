@@ -8,6 +8,7 @@
 (require "./lib/strategies/rb-rb-wr-wr-te-qb.rkt")
 (require "./lib/strategies/largest-diff.rkt")
 (require "./lib/strategies/furthest-from-avg.rkt")
+(require "./lib/strategies/user-input.rkt")
 
 
 (define num-of-managers 10)
@@ -15,7 +16,7 @@
 (define create-managers
   (lambda ()
     (list
-      (make-object manager% 1 furthest-from-avg)
+      (make-object manager% 1 user-input)
       (make-object manager% 2 furthest-from-avg)
       (make-object manager% 3 furthest-from-avg)
       (make-object manager% 4 furthest-from-avg)
@@ -41,6 +42,15 @@
                        (reverse managers))])
                 (let ([selected-player
                         (send manager make-selection players)])
+                  (displayln
+                    (string-append
+                      (send manager get-name)
+                      " selected "
+                      (string-upcase
+                        (symbol->string
+                          (send selected-player get-position)))
+                      " "
+                      (send selected-player get-name)))
                   (send players remove selected-player)
                   (send
                     (send manager get-roster) add-player selected-player))))
