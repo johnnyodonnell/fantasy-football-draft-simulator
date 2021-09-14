@@ -23,8 +23,8 @@
 (define create-managers
   (lambda ()
     (list
-      (make-object manager% 1 user-input)
-      (make-object manager% 2 furthest-from-avg)
+      (make-object manager% 1 furthest-from-avg)
+      (make-object manager% 2 user-input)
       (make-object manager% 3 furthest-from-avg)
       (make-object manager% 4 (get-random-strategy))
       (make-object manager% 5 (get-random-strategy))
