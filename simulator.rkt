@@ -4,7 +4,8 @@
 (require "./lib/roster.rkt")
 (require "./lib/players.rkt")
 (require "./lib/strategies/highest-scorer.rkt")
-(require "./lib/strategies/rb-rb-wr-wr.rkt")
+(require "./lib/strategies/rb-rb-wr-wr-qb-te.rkt")
+(require "./lib/strategies/rb-rb-wr-wr-te-qb.rkt")
 
 
 (define num-of-managers 10)
@@ -12,16 +13,16 @@
 (define create-managers
   (lambda ()
     (list
-      (make-object manager% 1 rb-rb-wr-wr)
-      (make-object manager% 2 rb-rb-wr-wr)
-      (make-object manager% 3 rb-rb-wr-wr)
-      (make-object manager% 4 rb-rb-wr-wr)
-      (make-object manager% 5 rb-rb-wr-wr)
-      (make-object manager% 6 rb-rb-wr-wr)
-      (make-object manager% 7 rb-rb-wr-wr)
-      (make-object manager% 8 rb-rb-wr-wr)
-      (make-object manager% 9 rb-rb-wr-wr)
-      (make-object manager% 10 rb-rb-wr-wr))))
+      (make-object manager% 1 rb-rb-wr-wr-qb-te)
+      (make-object manager% 2 rb-rb-wr-wr-qb-te)
+      (make-object manager% 3 rb-rb-wr-wr-qb-te)
+      (make-object manager% 4 rb-rb-wr-wr-qb-te)
+      (make-object manager% 5 rb-rb-wr-wr-qb-te)
+      (make-object manager% 6 rb-rb-wr-wr-qb-te)
+      (make-object manager% 7 rb-rb-wr-wr-qb-te)
+      (make-object manager% 8 rb-rb-wr-wr-te-qb)
+      (make-object manager% 9 rb-rb-wr-wr-qb-te)
+      (make-object manager% 10 rb-rb-wr-wr-qb-te))))
 
 (define by-roster-score
   (lambda (manager1 manager2)

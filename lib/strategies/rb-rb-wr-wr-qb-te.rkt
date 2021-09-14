@@ -1,13 +1,13 @@
 #lang racket
 
-(provide rb-rb-wr-wr)
+(provide rb-rb-wr-wr-qb-te)
 
 
 (define is-available
   (lambda (roster position)
     (> (send roster get-open-slot-count position) 0)))
 
-(define rb-rb-wr-wr
+(define rb-rb-wr-wr-qb-te
   (lambda (available-players roster)
     (cond
       [(is-available roster 'rb) (send available-players get-top 'rb)]
