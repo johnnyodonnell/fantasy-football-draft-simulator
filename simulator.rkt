@@ -11,7 +11,14 @@
 (require "./lib/strategies/user-input.rkt")
 
 
-(define num-of-managers 10)
+(define get-random-strategy
+  (lambda ()
+    (let ([rand (random 0 4)])
+      (cond
+        [(= rand 0) largest-diff]
+        [(= rand 1) furthest-from-avg]
+        [(= rand 2) rb-rb-wr-wr-qb-te]
+        [else highest-scorer]))))
 
 (define create-managers
   (lambda ()
@@ -19,13 +26,13 @@
       (make-object manager% 1 user-input)
       (make-object manager% 2 furthest-from-avg)
       (make-object manager% 3 furthest-from-avg)
-      (make-object manager% 4 furthest-from-avg)
-      (make-object manager% 5 furthest-from-avg)
-      (make-object manager% 6 furthest-from-avg)
-      (make-object manager% 7 furthest-from-avg)
-      (make-object manager% 8 furthest-from-avg)
-      (make-object manager% 9 furthest-from-avg)
-      (make-object manager% 10 furthest-from-avg))))
+      (make-object manager% 4 (get-random-strategy))
+      (make-object manager% 5 (get-random-strategy))
+      (make-object manager% 6 (get-random-strategy))
+      (make-object manager% 7 (get-random-strategy))
+      (make-object manager% 8 (get-random-strategy))
+      (make-object manager% 9 (get-random-strategy))
+      (make-object manager% 10 (get-random-strategy)))))
 
 (define by-roster-score
   (lambda (manager1 manager2)
