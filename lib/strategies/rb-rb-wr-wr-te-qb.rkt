@@ -13,5 +13,7 @@
       [(is-available roster 'rb) (send available-players get-top 'rb)]
       [(is-available roster 'wr) (send available-players get-top 'wr)]
       [(is-available roster 'te) (send available-players get-top 'te)]
-      [else (send available-players get-top 'qb)])))
+      [(is-available roster 'qb) (send available-players get-top 'qb)]
+      [(is-available roster 'k) (send available-players get-top 'k)]
+      [else (send available-players get-top 'dst)])))
 

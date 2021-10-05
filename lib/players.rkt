@@ -31,6 +31,11 @@
             (strip-leading-whitespace? . #t)
             (strip-trailing-whitespace? . #t)))))))
 
+(define make-player-map-entry
+  (lambda (position all-players-list)
+    (cons position
+          (filter-by-position position all-players-list))))
+
 (define players%
   (class* object%
           ()
@@ -39,14 +44,12 @@
                    (let ([all-players-list (create-all-players-list)])
                      (make-hash
                        (list
-                         (cons 'qb
-                               (filter-by-position 'qb all-players-list))
-                         (cons 'rb
-                               (filter-by-position 'rb all-players-list))
-                         (cons 'wr
-                               (filter-by-position 'wr all-players-list))
-                         (cons 'te
-                               (filter-by-position 'te all-players-list)))))])
+                         (make-player-map-entry 'qb all-players-list)
+                         (make-player-map-entry 'rb all-players-list)
+                         (make-player-map-entry 'wr all-players-list)
+                         (make-player-map-entry 'te all-players-list)
+                         (make-player-map-entry 'dst all-players-list)
+                         (make-player-map-entry 'k all-players-list))))])
           (define/public get-top
                          (lambda (position)
                            (let ([players (hash-ref player-map position)])

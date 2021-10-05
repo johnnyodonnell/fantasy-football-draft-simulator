@@ -3,5 +3,5 @@
 (provide positions)
 
 
-(define positions '(qb rb wr te))
+(define positions '(qb rb wr te dst k))
 

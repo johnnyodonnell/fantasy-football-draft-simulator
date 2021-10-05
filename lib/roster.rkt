@@ -10,7 +10,9 @@
   (hash 'qb 1
         'rb 2
         'wr 2
-        'te 1))
+        'te 1
+        'dst 1
+        'k 1))
 
 (define total-slots
   (foldl
@@ -26,15 +28,21 @@
       [(vector-ref slots i) (next-open-slot-index slots (add1 i))]
       [else i])))
 
+(define make-player-vector
+  (lambda (position)
+    (make-vector (hash-ref slot-limits position) #f)))
+
 (define roster%
   (class* object%
           ()
           (super-new)
           (field [player-map
-                   (hash 'qb (make-vector (hash-ref slot-limits 'qb) #f)
-                         'rb (make-vector (hash-ref slot-limits 'rb) #f)
-                         'wr (make-vector (hash-ref slot-limits 'wr) #f)
-                         'te (make-vector (hash-ref slot-limits 'te) #f))])
+                   (hash 'qb (make-player-vector 'qb)
+                         'rb (make-player-vector 'rb)
+                         'wr (make-player-vector 'wr)
+                         'te (make-player-vector 'te)
+                         'dst (make-player-vector 'dst)
+                         'k (make-player-vector 'k))])
           (define/public get-open-slot-count
                          (lambda (position)
                            (- (hash-ref slot-limits position)
